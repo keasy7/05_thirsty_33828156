@@ -1,0 +1,41 @@
+<!doctype html> 
+<html>  
+  <head>  
+    <title><%=shopName%></title> 
+  </head>  
+  <body>  
+    <h1> This is the register page </h1> 
+    <form method="POST" action="/registered"> 
+        First Name:<input id="first" type="text" name="first"/> 
+        Last Name:<input id="last" type="text" name="last" /> 
+        Email:<input id="email" type="text" name="email" />
+          <span id="error-message" role="alert" aria-live="assertive" style="color: red; margin-left: 8px;"></span> <!-- error message to be shown -->
+        <input type="submit" value="OK" /> 
+    </form> 
+   <script>
+
+function validateEmail(email) {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //checks that email address is in the correct format
+  return emailPattern.test(email);
+}
+
+document.querySelector('form').addEventListener('submit', function(event) {
+
+  event.preventDefault(); // Prevent the form from submitting
+
+  const emailInput = document.getElementById('email');
+  const errorMessage = document.getElementById('error-message');
+
+  if (validateEmail(emailInput.value)) {
+    errorMessage.textContent = ''; // Clear any previous error message
+    this.submit();
+
+  } else {
+    errorMessage.textContent = 'Please enter a valid email address.';
+  }
+
+});
+
+</script>
+</body>  
+</html> 
